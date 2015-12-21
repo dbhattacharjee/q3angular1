@@ -35,5 +35,8 @@
   "dependencies": {
     "express": "^4.13.3",
     "gzippo": "^0.2.0"
-  }
+  },
+  "scripts": {
+    "postinstall": "grunt build"
+  }        
 }
