@@ -5,10 +5,11 @@
             .module('heroku1App')
             .factory('UserService', UserService);
 
-    UserService.$inject = ['$http'];
-    function UserService($http) {
+    UserService.$inject = ['$http', '$rootScope', 'API_CONSTANTS'];
+    function UserService($http, $rootScope, API_CONSTANTS) {
         var service = {};
-
+        
+        service.GetAllMails = GetAllMails;
         service.GetAll = GetAll;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
@@ -17,7 +18,11 @@
         service.Delete = Delete;
 
         return service;
-
+        
+        function GetAllMails() {
+            return $http.get(API_CONSTANTS.URL+'/api/mail/mails?authkey='+$rootScope.globals.currentUser.authdata).then(handleSuccess, handleError('Error getting mails'));
+        }
+        
         function GetAll() {
             return $http.get('/api/users').then(handleSuccess, handleError('Error getting all users'));
         }

@@ -9,15 +9,9 @@
     config.$inject = ['$routeProvider', '$locationProvider'];
     function config($routeProvider, $locationProvider) {
         $routeProvider
-                .when('/', {
-            templateUrl: 'views/main.html',
-            controller: 'MainCtrl',
-            controllerAs: 'vm'
-        })
-
-                .when('/about', {
-            templateUrl: 'views/about.html',
-            controller: 'AboutCtrl',
+                .when('/mail', {
+            templateUrl: 'views/mail/mail.view.html',
+            controller: 'MailController',
             controllerAs: 'vm'
         })
 
@@ -27,17 +21,12 @@
             controllerAs: 'vm'
         })
 
-                .when('/register', {
-            controller: 'RegisterController',
-            templateUrl: 'register/register.view.html',
-            controllerAs: 'vm'
-        })
-
                 .otherwise({redirectTo: '/login'});
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
     function run($rootScope, $location, $cookieStore, $http) {
+        $rootScope.login_text = 'Login';
         // keep user logged in after page refresh
         $rootScope.globals = $cookieStore.get('globals') || {};
         if ($rootScope.globals.currentUser) {
@@ -50,6 +39,9 @@
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
                 $location.path('/login');
+            }
+            if(loggedIn) {
+                $rootScope.login_text = 'Logout';
             }
         });
     }

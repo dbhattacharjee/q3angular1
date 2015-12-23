@@ -38,12 +38,13 @@
                     authdata: authdata
                 }
             };
-
+            $rootScope.login_text = 'Logout';
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
             $cookieStore.put('globals', $rootScope.globals);
         }
 
         function ClearCredentials() {
+            $rootScope.login_text = 'Login';
             $rootScope.globals = {};
             $cookieStore.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';
