@@ -20,7 +20,7 @@
         return service;
         
         function GetAllMails() {
-            return $http.get(API_CONSTANTS.URL+'/api/mail/mails?authkey='+$rootScope.globals.currentUser.authdata).then(handleSuccess, handleError('Error getting mails'));
+            return $http.get(API_CONSTANTS.URL+'/api/mails?authkey='+$rootScope.globals.currentUser.authdata).then(handleSuccess, handleError('Error getting mails'));
         }
         
         function GetAll() {
