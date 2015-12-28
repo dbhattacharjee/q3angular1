@@ -11,9 +11,9 @@
     <tbody>
         <tr ng-repeat="mail in mails">
             <td>{{ mail["subject"]}}</td>    
-            <td>{{ mail["from"]["email"] }}</td>
-            <td>{{ mail["to"][0]["email"] }}</td>
-            <td>{{ mail["date"] | date }}</td>
+            <td>{{ mail["from"] }}</td>
+            <td>{{ mail["to"] }}</td>
+            <td>{{ mail["dated"] }}</td>
         </tr>
     </tbody>
 </table>
