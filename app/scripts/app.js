@@ -2,9 +2,10 @@
     'use strict';
 
     angular
-            .module('heroku1App', ['ngRoute', 'ngCookies'])
+            .module('heroku1App', ['ngRoute', 'ngCookies', 'ngSanitize'])
             .config(config)
-            .run(run);
+            .run(run)
+            .filter('ashtml', function($sce) { return $sce.trustAsHtml; });
 
     config.$inject = ['$routeProvider', '$locationProvider'];
     function config($routeProvider, $locationProvider) {
@@ -24,14 +25,18 @@
                 .otherwise({redirectTo: '/login'});
     }
 
-    run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
-    function run($rootScope, $location, $cookieStore, $http) {
+    run.$inject = ['$rootScope', '$location', '$cookieStore', '$http', '$sce'];
+    function run($rootScope, $location, $cookieStore, $http, $sce) {
         $rootScope.login_text = 'Login';
         // keep user logged in after page refresh
         $rootScope.globals = $cookieStore.get('globals') || {};
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
         }
+        
+        $rootScope.renderHtml = function (htmlCode) {
+            return $sce.trustAsHtml(htmlCode);
+        };
 
         $rootScope.$on('$locationChangeStart', function(event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
