@@ -5,15 +5,17 @@
             <th>Subject</th>
             <th>From</th>
             <th>To</th>
+            <th>CC</th>
             <th>Dated</th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="mail in mails">
-            <td>{{ mail["subject"]}}</td>    
+            <td><a href="" ng-click="readMail(mail['mailUID'])">{{ mail["subject"] | limitTo : 50 : 0}}</a></td>
             <td ng-bind-html="mail.from | ashtml"></td>
             <td ng-bind-html="mail.to | ashtml"></td>
-            <td>{{ mail["dated"] }}</td>
+            <td ng-bind-html="mail.cc | ashtml"></td>
+            <td style="width:150px;">{{ mail["dated"] }}</td>
         </tr>
     </tbody>
 </table>
