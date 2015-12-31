@@ -23,9 +23,9 @@
                 });
         };
         
-        $rootScope.readMail = function(mailUID) {
+        $rootScope.readMail = function(id) {
             vm.dataLoading = true;
-            UserService.GetSingleMail(mailUID)
+            UserService.GetSingleMail(id)
                 .then(function (response) {
                     if (response.data.success) {
                         FlashService.Success('Emails Fetched !', true);

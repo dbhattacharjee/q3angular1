@@ -10,6 +10,7 @@
         var service = {};
         
         service.GetAllMails = GetAllMails;
+        service.GetSingleMail = GetSingleMail;
         service.GetAll = GetAll;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
@@ -21,6 +22,9 @@
         
         function GetAllMails() {
             return $http.get(API_CONSTANTS.URL+'/api/mails?authkey='+$rootScope.globals.currentUser.authdata).then(handleSuccess, handleError('Error getting mails'));
+        }
+        function GetSingleMail(id) {
+            return $http.get(API_CONSTANTS.URL+'/api/single-mail?authkey='+$rootScope.globals.currentUser.authdata+'&id='+id).then(handleSuccess, handleError('Error getting mail details'));
         }
         
         function GetAll() {

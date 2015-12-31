@@ -11,7 +11,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="mail in mails">
-            <td><a href="" ng-click="readMail(mail['mailUID'])">{{ mail["subject"] | limitTo : 50 : 0}}</a></td>
+            <td><a href="" ng-click="readMail(mail['id'])">{{ mail["subject"] | limitTo : 50 : 0}}</a></td>
             <td ng-bind-html="mail.from | ashtml"></td>
             <td ng-bind-html="mail.to | ashtml"></td>
             <td ng-bind-html="mail.cc | ashtml"></td>
