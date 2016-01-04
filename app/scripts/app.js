@@ -2,13 +2,13 @@
     'use strict';
 
     angular
-            .module('heroku1App', ['ngRoute', 'ngCookies', 'ngSanitize'])
+            .module('heroku1App', ['ngRoute', 'ngCookies', 'ngSanitize', 'ngDialog', 'angularUtils.directives.dirPagination'])
             .config(config)
             .run(run)
             .filter('ashtml', function($sce) { return $sce.trustAsHtml; });
 
-    config.$inject = ['$routeProvider', '$locationProvider'];
-    function config($routeProvider, $locationProvider) {
+    config.$inject = ['$routeProvider', '$locationProvider', 'ngDialogProvider'];
+    function config($routeProvider, $locationProvider, ngDialogProvider) {
         $routeProvider
                 .when('/mail', {
             templateUrl: 'views/mail/mail.view.html',
@@ -23,6 +23,15 @@
         })
 
                 .otherwise({redirectTo: '/login'});
+        
+        ngDialogProvider.setDefaults({
+				className: 'ngdialog-theme-default',
+				plain: false,
+				showClose: true,
+				closeByDocument: true,
+				closeByEscape: true,
+				appendTo: false
+			});
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http', '$sce'];

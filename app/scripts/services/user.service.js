@@ -11,6 +11,7 @@
         
         service.GetAllMails = GetAllMails;
         service.GetSingleMail = GetSingleMail;
+        service.GetRefreshQueue = GetRefreshQueue;
         service.GetAll = GetAll;
         service.GetById = GetById;
         service.GetByUsername = GetByUsername;
@@ -25,6 +26,9 @@
         }
         function GetSingleMail(id) {
             return $http.get(API_CONSTANTS.URL+'/api/single-mail?authkey='+$rootScope.globals.currentUser.authdata+'&id='+id).then(handleSuccess, handleError('Error getting mail details'));
+        }
+        function GetRefreshQueue() {
+            return $http.get(API_CONSTANTS.URL+'/api/refresh-queue?authkey='+$rootScope.globals.currentUser.authdata).then(handleSuccess, handleError('Error refreshing mails'));
         }
         
         function GetAll() {

@@ -5,8 +5,8 @@
         .module('heroku1App')
         .factory('FlashService', FlashService);
 
-    FlashService.$inject = ['$rootScope'];
-    function FlashService($rootScope) {
+    FlashService.$inject = ['$rootScope', '$timeout'];
+    function FlashService($rootScope, $timeout) {
         var service = {};
 
         service.Success = Success;
@@ -21,7 +21,8 @@
                 clearFlashMessage();
             });
 
-            function clearFlashMessage() {
+        }
+        function clearFlashMessage() {
                 var flash = $rootScope.flash;
                 if (flash) {
                     if (!flash.keepAfterLocationChange) {
@@ -32,7 +33,6 @@
                     }
                 }
             }
-        }
 
         function Success(message, keepAfterLocationChange) {
             $rootScope.flash = {
@@ -40,6 +40,9 @@
                 type: 'success', 
                 keepAfterLocationChange: keepAfterLocationChange
             };
+            $timeout(function(){
+                clearFlashMessage();
+            }, 2000);
         }
 
         function Error(message, keepAfterLocationChange) {

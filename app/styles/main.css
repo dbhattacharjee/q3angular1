@@ -81,3 +81,27 @@ body {
     border-bottom: 0;
   }
 }
+
+/****************CUSTOM**************/
+.footer {
+    margin-top: -30px;
+    position: absolute;
+    width: 100%;
+    background-color: #99ccff;
+}
+
+.push-box {
+    height: 20px;
+}
+
+.main-container {
+    height: auto;
+    min-height: 100%;
+}
+
+html, body {
+height : 100%;
+}
+.navbar-default {
+ background-color: #99ccff;   
+}
