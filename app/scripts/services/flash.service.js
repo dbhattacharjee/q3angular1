@@ -51,6 +51,9 @@
                 type: 'error',
                 keepAfterLocationChange: keepAfterLocationChange
             };
+            $timeout(function(){
+                clearFlashMessage();
+            }, 2000);
         }
     }
 
