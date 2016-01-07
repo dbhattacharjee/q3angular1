@@ -41,6 +41,7 @@
                         $rootScope.email_cc = $sce.trustAsHtml(response.data.mailInfo.ccAddress);
                         $rootScope.email_subject = $sce.trustAsHtml(response.data.mailInfo.subject);
                         $rootScope.email_body = $sce.trustAsHtml(response.data.mailInfo.body);
+                        $rootScope.email_attachments = $sce.trustAsHtml(response.data.mailInfo.attachments);
                         
                         ngDialog.open({
 					template: 'firstDialogId',
